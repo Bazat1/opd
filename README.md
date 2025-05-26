@@ -12,3 +12,4 @@
 ## Лабораторная работа 4.
 ![image](https://github.com/user-attachments/assets/8fa93c6f-843e-44a7-88ce-dad010fb3ddb)
 
+
