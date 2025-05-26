@@ -9,7 +9,6 @@ RATES = {
     'RUB': {'USD': 0.013, 'EUR': 0.012}
 }
 
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     result = None
