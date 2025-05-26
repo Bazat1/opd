@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Фиксированные курсы валют
+
 RATES = {
     'USD': {'RUB': 75.50, 'EUR': 0.92},
     'EUR': {'RUB': 82.30, 'USD': 1.09},
