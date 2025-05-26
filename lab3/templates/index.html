@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер валют</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .converter {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e9;
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="converter">
+        <h1>Конвертер валют</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label>Сумма:</label>
+                <input type="number" name="amount" value="{{ amount }}" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>Из валюты:</label>
+                <select name="from" required>
+                    {% for currency in currencies %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>В валюту:</label>
+                <select name="to" required>
+                    {% for currency in currencies %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit">Конвертировать</button>
+        </form>
+
+        {% if result %}
+            <div class="{% if result is string %}error{% else %}result{% endif %}">
+                {% if result is string %}
+                    {{ result }}
+                {% else %}
+                    {{ "%.2f"|format(result) }} {{ request.form['to'] }}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
